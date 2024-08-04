@@ -8,6 +8,7 @@ import { Button } from "../ui/button"
 import { usePathname } from "next/navigation"
 import { getMenuList } from "./menulist/menu-list"
 import { CollapseMenuButton } from "./collapse-menu-buton"
+import { signOut } from 'next-auth/react'
 
 export const Menu = ( { isOpen } : { isOpen : boolean | undefined}) => {
 
@@ -98,7 +99,9 @@ export const Menu = ( { isOpen } : { isOpen : boolean | undefined}) => {
                             <Tooltip delayDuration={100}>
                                 <TooltipTrigger asChild>
                                     <Button
-                                        onClick={() => { }}
+                                        onClick={async () => {await signOut(
+                                            {callbackUrl: "/"}
+                                        )}}
                                         variant="outline"
                                         className="w-full justify-center h-10 mt-5"
                                     >
@@ -111,7 +114,7 @@ export const Menu = ( { isOpen } : { isOpen : boolean | undefined}) => {
                                                 isOpen === false ? "opacity-0 hidden" : "opacity-100"
                                             )}
                                         >
-                                            Sign out
+                                            Cerrar Session
                                         </p>
                                     </Button>
                                 </TooltipTrigger>
